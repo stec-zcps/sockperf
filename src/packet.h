@@ -42,8 +42,7 @@ public:
     bool verifyError(uint64_t _seqNo);
 
     uint64_t seq2index(uint64_t _seqNo) {
-        return ((_seqNo <= m_maxSequenceNo) ? _seqNo / m_replyEvery * m_blockSize
-                                            : verifyError(_seqNo));
+        return _seqNo / m_replyEvery * m_blockSize;
     } // index 0 is not used for real packets
 
     const TicksTime &getTxTime(uint64_t _seqNo) { return m_pTimes[seq2index(_seqNo)]; }
